@@ -46,7 +46,7 @@ public class Balloon : MonoBehaviour {
     private AudioSource _audioSource;
 
     // The path where all magnitudes are listed
-    private string _sizeListPath = "Assets/Scripts/Balloon/SizeList.txt";
+    private string _sizeListPath = "Assets/Source/Scripts/Balloon/SizeList.txt";
     // The index of the inflation is the number of inflation executed
     private int _index;
 
@@ -59,14 +59,13 @@ public class Balloon : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetButtonDown("Fire1")) Blow();
         if(_isInflating) ScaleUp();
     }
 
     /// <summary>
     /// Begin the balloon inflation
     /// </summary>
-    private void Blow() {
+    public void Blow() {
         _isInflating = true;
         _audioSource.clip = audioClips[Random.Range(0, audioClips.Count)];
         _audioSource.Play();
