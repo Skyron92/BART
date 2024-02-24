@@ -1,7 +1,10 @@
 ﻿using UnityEngine;
 
-public class Pump : MonoBehaviour
-{
+/// <summary>
+/// Manages the balloon inflation trigger
+/// </summary>
+public class Pump : MonoBehaviour {
+    
     [SerializeField] private Balloon ballonReference;
 
     private void OnTriggerEnter(Collider other) {

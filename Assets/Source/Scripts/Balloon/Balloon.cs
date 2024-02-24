@@ -36,6 +36,7 @@ public class Balloon : MonoBehaviour {
     
     // True if the balloon is currently inflating
     private bool _isInflating;
+    public bool IsInflating => _isInflating;
     
     [Header("Assets")]
     // Contains the prefab instantiated when the balloon explodes
