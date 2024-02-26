@@ -55,12 +55,17 @@ public class Balloon : MonoBehaviour
     [SerializeField] private List<AudioClip> audioClips;
     private AudioSource _audioSource;
 
+    [SerializeField] private GameObject canvasGameObject;
+    [SerializeField] private GameObject gameControllers;
+    [SerializeField] private GameObject uiControllers;
+
     // The path where all magnitudes are listed
     private string _sizeListPath = "Assets/Source/Scripts/Balloon/SizeList.txt";
     // The index of the inflation is the number of inflation executed
     private int _index;
 
     private void Awake() {
+        uiControllers.SetActive(false);
         if (balloonTransform == null) balloonTransform = transform;
         _audioSource = GetComponent<AudioSource>();
         _maxSize = Random.Range(minimalMaxSize, maximalMaxSize);
@@ -138,6 +143,9 @@ public class Balloon : MonoBehaviour
     /// Begin the balloon explosion
     /// </summary>
     private void Explode() {
+        canvasGameObject.SetActive(true);
+        uiControllers.SetActive(true);
+        gameControllers.SetActive(false);
         var explosionInstance = Instantiate(explosionPrefab, transform.position, quaternion.identity);
         Destroy(explosionInstance,3);
         Destroy(gameObject);
