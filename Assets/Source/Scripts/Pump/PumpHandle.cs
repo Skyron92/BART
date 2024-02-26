@@ -36,6 +36,16 @@ public class PumpHandle : MonoBehaviour
     // The materials of the handle
     [SerializeField] private Material hoveredMaterial;
     [SerializeField] private Material selectedMaterial;
+    [SerializeField] private Material baseMaterial;
+
+    private Material CurrentMaterial {
+        get {
+            return GetComponent<MeshRenderer>().material;
+        }
+        set {
+            GetComponent<MeshRenderer>().material = value;
+        }
+    }
 
     // The distance where the handle stop to follow the hand
     [SerializeField, Range(0f, 1f)] private float hoverExitRange;
@@ -69,6 +79,10 @@ public class PumpHandle : MonoBehaviour
             _xrSimpleInteractable.selectExited.Invoke(_selectExitEventArgs);
             _xrSimpleInteractable.hoverExited.Invoke(_hoverExitEventArgs);
             yield break;
+        }
+        else
+        {
+            if (CurrentMaterial != selectedMaterial) CurrentMaterial = selectedMaterial;
         }
         if (balloonReference.IsInflating) yield return new WaitForSeconds(0.1f);
         else {
@@ -106,7 +120,12 @@ public class PumpHandle : MonoBehaviour
     private void OnTriggerStay(Collider other) {
         // Reattributes the correct material to the handle
         if (other.CompareTag("GameController")) 
-            GetComponent<MeshRenderer>().material = 
-                _xrSimpleInteractable.isSelected ? selectedMaterial : hoveredMaterial;
+            CurrentMaterial = _xrSimpleInteractable.isSelected ? selectedMaterial : hoveredMaterial;
+    }
+
+    
+    
+    public void SetMaterialByState() {
+        CurrentMaterial = _xrSimpleInteractable.isHovered ? hoveredMaterial : baseMaterial;
     }
 }

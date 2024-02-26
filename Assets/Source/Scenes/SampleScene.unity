@@ -1596,6 +1596,18 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1738117073 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8788741400881705740, guid: a1504319721f1574caff0af0e5d1e7b0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6641711301871285218}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a35f6cfbfba9b548aaa00d52cfe8a50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1783734326
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1738,6 +1750,21 @@ PrefabInstance:
       propertyPath: pumpReference
       value: 
       objectReference: {fileID: 6641711301871285219}
+    - target: {fileID: 7432448966465506398, guid: 4a90bfdaf3130ee43bb7a17ea7ed415c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207791825290911751, guid: 4a90bfdaf3130ee43bb7a17ea7ed415c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8877179201258296358, guid: 4a90bfdaf3130ee43bb7a17ea7ed415c,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1818,6 +1845,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1268542905707203799, guid: a1504319721f1574caff0af0e5d1e7b0,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1378288252852348667, guid: a1504319721f1574caff0af0e5d1e7b0,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2023306687462008102, guid: a1504319721f1574caff0af0e5d1e7b0,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2167534836291837937, guid: a1504319721f1574caff0af0e5d1e7b0,
         type: 3}
       propertyPath: handleCenter
@@ -1828,16 +1870,16 @@ PrefabInstance:
       propertyPath: balloonReference
       value: 
       objectReference: {fileID: 2785354398937540612}
-    - target: {fileID: 2379344405021920463, guid: a1504319721f1574caff0af0e5d1e7b0,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 72385c40cd7ba9244b239f8ae19a0a52, type: 2}
     - target: {fileID: 6038993874499212118, guid: a1504319721f1574caff0af0e5d1e7b0,
         type: 3}
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1437629751}
+    - target: {fileID: 7591284737429755922, guid: a1504319721f1574caff0af0e5d1e7b0,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8751376967254833816, guid: a1504319721f1574caff0af0e5d1e7b0,
         type: 3}
       propertyPath: ballonReference
@@ -1848,6 +1890,41 @@ PrefabInstance:
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 1437629751}
+    - target: {fileID: 8788741400881705740, guid: a1504319721f1574caff0af0e5d1e7b0,
+        type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788741400881705740, guid: a1504319721f1574caff0af0e5d1e7b0,
+        type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1738117073}
+    - target: {fileID: 8788741400881705740, guid: a1504319721f1574caff0af0e5d1e7b0,
+        type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788741400881705740, guid: a1504319721f1574caff0af0e5d1e7b0,
+        type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CancelInvoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788741400881705740, guid: a1504319721f1574caff0af0e5d1e7b0,
+        type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.MonoBehaviour, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8788741400881705740, guid: a1504319721f1574caff0af0e5d1e7b0,
+        type: 3}
+      propertyPath: m_HoverExited.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9083113162493370888, guid: a1504319721f1574caff0af0e5d1e7b0,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9211310176023157625, guid: a1504319721f1574caff0af0e5d1e7b0,
         type: 3}
       propertyPath: m_Name

@@ -24,6 +24,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _Base_Map:
+        m_Texture: {fileID: 2800000, guid: 7715b06ec9c82694d9abf532484c9ff7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -39,12 +43,14 @@ Material:
     m_Ints: []
     m_Floats:
     - _Fresnel_Power: 2
+    - _Graduation: 1.64
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Voronoi_Density: 1.38
+    - _Voronoi_Density: 5
     m_Colors:
     - _Effect_Color: {r: 2.4622889, g: 2.3426082, b: 0.6271868, a: 0}
-    - _Handle_Color: {r: 0.14901961, g: 0.14901961, b: 0.14901961, a: 0}
+    - _Handle_Color: {r: 0.759434, g: 0.4621084, b: 0.4621084, a: 0}
+    - _Metal_Color: {r: 0.7490196, g: 0.7490196, b: 0.7490196, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &1068462390566350181
 MonoBehaviour:
