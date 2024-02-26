@@ -7,20 +7,24 @@ using Random = UnityEngine.Random;
 /// <summary>
 /// Manages the balloon behaviour
 /// </summary>
-public class Balloon : MonoBehaviour {
-    
+public class Balloon : MonoBehaviour
+{
+
     [Header("Inflation")]
+    // The balloon's transform
+    [SerializeField, Tooltip("The balloon transform. If empty it will set to the game object this script is attached")] private Transform balloonTransform;
+    
     // The inflation speed of the balloon
-    [SerializeField, Range(0, 1)] private float speed;
+    [SerializeField, Range(.01f, 1), Tooltip("The inflation speed")] private float speed;
 
     // The size that makes the balloon explode once reached
     private float _maxSize;
     // The minimal value for maxSize
-    [SerializeField, Range(1f, 5f)] private float minimalMaxSize;
+    [SerializeField, Range(1f, 5f), Tooltip("The minimum value the balloon can explode")] private float minimalMaxSize;
     //The maximal value for maxSize
-    [SerializeField, Range(1f, 5f)] private float maximalMaxSize;
+    [SerializeField, Range(1f, 5f), Tooltip("The maximum value the balloon can explode")] private float maximalMaxSize;
     // The current size of the balloon
-    private float CurrentSize => transform.localScale.magnitude;
+    private float CurrentSize => balloonTransform.localScale.magnitude;
 
     // The initial duration of one inflation
     private const float InitialInflationDuration = 1f;
@@ -32,11 +36,16 @@ public class Balloon : MonoBehaviour {
     private float _timer;
 
     // The animation curve of the balloon inflation
-    [SerializeField] private AnimationCurve fillCurve;
+    [SerializeField, Tooltip("The size curve of the balloon")] private AnimationCurve fillCurve;
     
     // True if the balloon is currently inflating
     private bool _isInflating;
-    public bool IsInflating => _isInflating;
+    public  bool IsInflating => _isInflating;
+
+    // The empty where the tail must be
+    [SerializeField, Tooltip("The target position of the tail")] private Transform tailPositionTransform;
+    // The tail model transform
+    [SerializeField, Tooltip("The tail's transform")] private Transform tailTransform;
     
     [Header("Assets")]
     // Contains the prefab instantiated when the balloon explodes
@@ -52,6 +61,7 @@ public class Balloon : MonoBehaviour {
     private int _index;
 
     private void Awake() {
+        if (balloonTransform == null) balloonTransform = transform;
         _audioSource = GetComponent<AudioSource>();
         _maxSize = Random.Range(minimalMaxSize, maximalMaxSize);
         _currentInflationDuration = InitialInflationDuration;
@@ -98,7 +108,9 @@ public class Balloon : MonoBehaviour {
         }
         
         // Inflation
-        transform.localScale = Vector3.Lerp(transform.localScale, GetTargetSize(), speed);  
+        balloonTransform.localScale = Vector3.Lerp(balloonTransform.localScale, GetTargetSize(), speed);
+        // Set the tail at its new position
+        tailTransform.position = tailPositionTransform.position;
        
         // Check if the balloon must explode
         if(HasReachedLimit()) Explode();
@@ -110,8 +122,8 @@ public class Balloon : MonoBehaviour {
     /// <returns>The next size of the balloon inflating</returns>
     Vector3 GetTargetSize() {
         float value = fillCurve.Evaluate(_timer);
-        return transform.localScale.y >= transform.localScale.x ? new Vector3(value, value, value) 
-            : new Vector3(transform.localScale.x, value, transform.localScale.z);
+        return balloonTransform.localScale.z >= balloonTransform.localScale.x ? new Vector3(value, value, value) 
+            : new Vector3(balloonTransform.localScale.x, balloonTransform.transform.localScale.y, value);
     }
 
     /// <summary>
