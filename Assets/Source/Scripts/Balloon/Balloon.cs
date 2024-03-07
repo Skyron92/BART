@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Unity.Mathematics;
@@ -63,6 +64,12 @@ public class Balloon : MonoBehaviour
     private string _sizeListPath = "Assets/Source/Scripts/Balloon/SizeList.txt";
     // The index of the inflation is the number of inflation executed
     private int _index;
+    
+    
+    public delegate void EventHandler(object sender, EventArgs e);
+
+    public event EventHandler Exploded;
+    public event EventHandler BlowingEnded;
 
     private void Awake() {
         uiControllers.SetActive(false);
@@ -96,6 +103,7 @@ public class Balloon : MonoBehaviour
        
         // Stop the inflation
         if (_timer >= _currentInflationDuration) {
+            BlowingEnded?.Invoke(this, EventArgs.Empty);
             _isInflating = false;
             _index++;
             _currentInflationDuration += CurrentSize >= 1f ? InitialInflationDuration+ CurrentSize / 10f : InitialInflationDuration + 0.1f;
@@ -143,6 +151,7 @@ public class Balloon : MonoBehaviour
     /// Begin the balloon explosion
     /// </summary>
     private void Explode() {
+        Exploded?.Invoke(this, EventArgs.Empty);
         canvasGameObject.SetActive(true);
         uiControllers.SetActive(true);
         gameControllers.SetActive(false);

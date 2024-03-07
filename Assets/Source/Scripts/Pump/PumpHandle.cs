@@ -80,10 +80,7 @@ public class PumpHandle : MonoBehaviour
             _xrSimpleInteractable.hoverExited.Invoke(_hoverExitEventArgs);
             yield break;
         }
-        else
-        {
-            if (CurrentMaterial != selectedMaterial) CurrentMaterial = selectedMaterial;
-        }
+        if (CurrentMaterial != selectedMaterial) CurrentMaterial = selectedMaterial;
         if (balloonReference.IsInflating) yield return new WaitForSeconds(0.1f);
         else {
             if(_position.y >= Ymin && _position.y <= Ymax) _position.y = XRSelectInteractor.transform.position.y;
@@ -122,8 +119,6 @@ public class PumpHandle : MonoBehaviour
         if (other.CompareTag("GameController")) 
             CurrentMaterial = _xrSimpleInteractable.isSelected ? selectedMaterial : hoveredMaterial;
     }
-
-    
     
     public void SetMaterialByState() {
         CurrentMaterial = _xrSimpleInteractable.isHovered ? hoveredMaterial : baseMaterial;
