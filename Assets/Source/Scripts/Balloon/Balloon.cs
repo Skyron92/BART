@@ -10,7 +10,6 @@ using Random = UnityEngine.Random;
 /// </summary>
 public class Balloon : MonoBehaviour
 {
-
     [Header("Inflation")]
     // The balloon's transform
     [SerializeField, Tooltip("The balloon transform. If empty it will set to the game object this script is attached")] private Transform balloonTransform;
@@ -56,23 +55,20 @@ public class Balloon : MonoBehaviour
     [SerializeField] private List<AudioClip> audioClips;
     private AudioSource _audioSource;
 
-    [SerializeField] private GameObject canvasGameObject;
-    [SerializeField] private GameObject gameControllers;
-    [SerializeField] private GameObject uiControllers;
-
     // The path where all magnitudes are listed
     private string _sizeListPath = "Assets/Source/Scripts/Balloon/SizeList.txt";
     // The index of the inflation is the number of inflation executed
     private int _index;
-    
     
     public delegate void EventHandler(object sender, EventArgs e);
 
     public event EventHandler Exploded;
     public event EventHandler BlowingEnded;
 
+    public static Balloon Instance;
+
     private void Awake() {
-        uiControllers.SetActive(false);
+        Instance = this;
         if (balloonTransform == null) balloonTransform = transform;
         _audioSource = GetComponent<AudioSource>();
         _maxSize = Random.Range(minimalMaxSize, maximalMaxSize);
@@ -152,9 +148,6 @@ public class Balloon : MonoBehaviour
     /// </summary>
     private void Explode() {
         Exploded?.Invoke(this, EventArgs.Empty);
-        canvasGameObject.SetActive(true);
-        uiControllers.SetActive(true);
-        gameControllers.SetActive(false);
         var explosionInstance = Instantiate(explosionPrefab, transform.position, quaternion.identity);
         Destroy(explosionInstance,3);
         Destroy(gameObject);

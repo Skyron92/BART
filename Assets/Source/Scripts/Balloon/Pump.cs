@@ -13,6 +13,10 @@ public class Pump : MonoBehaviour {
 
     private bool _balloonIsExploded;
 
+    public delegate void EventHandler(object sender, EventArgs e);
+
+    public event EventHandler PumpActivated;
+
     private void Awake() {
         balloonReference.Exploded += OnExploded;
         balloonReference.BlowingEnded += OnBlowingEnded;
@@ -30,16 +34,17 @@ public class Pump : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Pump")) Activate();
-    }
-
-    private void Activate() {
-        balloonReference.Blow();
+        if(other.CompareTag("Pump")) OnPumpActivated(this);
     }
 
     private void EmitParticles() {
         moneyParticleSystem.gameObject.SetActive(true);
         if(moneyParticleSystem.isPlaying) moneyParticleSystem.Stop();
         moneyParticleSystem.Play();
+    }
+
+    protected virtual void OnPumpActivated(object sender) {
+        balloonReference.Blow();
+        PumpActivated?.Invoke(sender, EventArgs.Empty);
     }
 }
