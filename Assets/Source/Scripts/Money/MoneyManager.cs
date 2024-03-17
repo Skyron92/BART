@@ -2,7 +2,6 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 public class MoneyManager : MonoBehaviour
 {
@@ -12,8 +11,6 @@ public class MoneyManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI moneyTMP;
 
     [SerializeField] private bool includesCent;
-
-    [SerializeField] private GameObject restartCanvas;
 
     private DataManager DataManagerInstance => DataManager.Instance;
 
@@ -41,27 +38,16 @@ public class MoneyManager : MonoBehaviour
 
     public event EventHandler Collected;
 
-    public static MoneyManager Instance;
-
-    private void Awake() {
-        Instance = this;
-    }
-
     private void Start() {
         pumpReference.PumpActivated += OnPumpActivated;
-        Balloon.Instance.Exploded += OnExploded;
-        DontDestroyOnLoad(gameObject);
+        Balloon.Instance.Exploded += (sender, args) => Restart(); 
         ResetValue();
+        DisplayMoney();
     }
 
     private void ResetValue() {
         _euro = 0;
         _cent = 0;
-    }
-
-    private void OnExploded(object sender, EventArgs e) {
-        restartCanvas.SetActive(true);
-        moneyTMP.text = "Le ballon a éclaté !";
     }
 
     private void OnPumpActivated(object sender, EventArgs e) {
@@ -70,13 +56,21 @@ public class MoneyManager : MonoBehaviour
     }
 
     private void DisplayMoney() {
+        Debug.Log("display");
         moneyTMP.text = includesCent ? _label + DataManagerInstance.GetTotalMoney() + "," + DataManagerInstance.GetTotalCent() + "€" 
             : _label + DataManagerInstance.GetTotalMoney() + "€";
     }
 
     public void CollectMoney() {
         DataManager.Instance.AddTotalMoney(_euro);
+        Debug.Log(DataManagerInstance.GetTotalMoney());
         Collected?.Invoke(this, EventArgs.Empty);
         DisplayMoney();
+        Invoke("Restart", 3f);
+    }
+
+    private void Restart() {
+        Debug.Log("Restart");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

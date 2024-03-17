@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
@@ -21,7 +20,15 @@ public class DataManager : MonoBehaviour
     public static DataManager Instance;
 
     private void Awake() {
-        Instance = this;
+        if (Instance != null && Instance != this) {
+            Destroy(this);
+            return;
+        }
+        if(Instance == null) Instance = this;
+    }
+
+    private void Start()
+    {
         DontDestroyOnLoad(gameObject);
     }
 
