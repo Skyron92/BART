@@ -79,29 +79,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balloonTransform: {fileID: 7473714265100734963}
-  speed: 1
-  minimalMaxSize: 2.8
-  maximalMaxSize: 3.46
+  speed: 0.197
+  minimalMaxSize: 1.86
+  maximalMaxSize: 5
   fillCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0.2870385
-      inSlope: 0.2181544
-      outSlope: 0.2181544
+      time: 0.054351807
+      value: 0
+      inSlope: 0.81815946
+      outSlope: 0.81815946
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.02736727
+      outWeight: 0.3698017
     - serializedVersion: 3
-      time: 20
-      value: 2
-      inSlope: 0.0060982374
-      outSlope: 0.0060982374
+      time: 1
+      value: 0.5
+      inSlope: 0.16183251
+      outSlope: 0.16183251
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.032676697
+      inWeight: 1
+      outWeight: 0.031881977
+    - serializedVersion: 3
+      time: 45
+      value: 3
+      inSlope: 0.026369516
+      outSlope: 0.026369516
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.027640957
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

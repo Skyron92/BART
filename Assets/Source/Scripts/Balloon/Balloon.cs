@@ -36,7 +36,7 @@ public class Balloon : MonoBehaviour
     private float _timer;
 
     // The animation curve of the balloon inflation
-    [SerializeField, Tooltip("The size curve of the balloon")] private AnimationCurve fillCurve;
+    [SerializeField, Tooltip("The size curve of the balloon. If you want to change the curve's settings, please refer to the SizeList.txt file in Assets/Source/Scripts/Balloon. The value corresponds to the size of the balloon.")] private AnimationCurve fillCurve;
     
     // True if the balloon is currently inflating
     private bool _isInflating;
@@ -102,7 +102,7 @@ public class Balloon : MonoBehaviour
             BlowingEnded?.Invoke(this, EventArgs.Empty);
             _isInflating = false;
             _index++;
-            _currentInflationDuration += CurrentSize >= 1f ? InitialInflationDuration+ CurrentSize / 10f : InitialInflationDuration + 0.1f;
+            _currentInflationDuration += CurrentSize >= 1f ? InitialInflationDuration + CurrentSize / 10f : InitialInflationDuration + 0.1f;
             // Generate a file with the magnitudes list of the balloon at each state
             #if UNITY_EDITOR
             string content = "";
@@ -111,7 +111,7 @@ public class Balloon : MonoBehaviour
                 File.Delete(_sizeListPath);
                 File.Create(_sizeListPath).Close();
             }
-            File.WriteAllText(_sizeListPath,content + "\n"+ _index + " : " + CurrentSize + "\n");
+            File.WriteAllText(_sizeListPath,content + "\n"+ _index + " : " + CurrentSize + "; timer : " + _timer +"\n");
             #endif
             return;
         }
@@ -122,7 +122,7 @@ public class Balloon : MonoBehaviour
         tailTransform.position = tailPositionTransform.position;
        
         // Check if the balloon must explode
-        if(HasReachedLimit()) Explode();
+       if(HasReachedLimit()) Explode();
     }
 
     /// <summary>
