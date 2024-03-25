@@ -59,6 +59,7 @@ public class Balloon : MonoBehaviour
     private string _sizeListPath = "Assets/Source/Scripts/Balloon/SizeList.txt";
     // The index of the inflation is the number of inflation executed
     private int _index;
+    public int Index => _index;
     
     public delegate void EventHandler(object sender, EventArgs e);
 

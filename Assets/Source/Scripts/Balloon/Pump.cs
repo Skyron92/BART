@@ -11,8 +11,6 @@ public class Pump : MonoBehaviour {
     [SerializeField] private ParticleSystem moneyParticleSystem;
     [SerializeField] private AudioSource moneyAudioSource;
 
-    private bool _balloonIsExploded;
-
     public delegate void EventHandler(object sender, EventArgs e);
 
     public event EventHandler PumpActivated;
@@ -30,7 +28,6 @@ public class Pump : MonoBehaviour {
     private void OnExploded(object sender, EventArgs e) {
         balloonReference.BlowingEnded -= OnBlowingEnded;
         Destroy(moneyParticleSystem.gameObject);
-        _balloonIsExploded = true;
     }
 
     private void OnTriggerEnter(Collider other) {

@@ -39,12 +39,8 @@ public class PumpHandle : MonoBehaviour
     [SerializeField] private Material baseMaterial;
 
     private Material CurrentMaterial {
-        get {
-            return GetComponent<MeshRenderer>().material;
-        }
-        set {
-            GetComponent<MeshRenderer>().material = value;
-        }
+        get => GetComponent<MeshRenderer>().material;
+        set => GetComponent<MeshRenderer>().material = value;
     }
 
     // The distance where the handle stop to follow the hand
