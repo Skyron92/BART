@@ -43,7 +43,7 @@ public class DataManager : MonoBehaviour
     }
 
     private void AddData() {
-        _content += "Pompe numéro " + (Balloon.Instance.Index + 1) + " : " + _timer. + " secondes; \n";
+        _content += "Pompe numéro " + (Balloon.Instance.Index + 1) + " : " + _timer + " secondes; \n";
         _timer = 0;
     }
 
